@@ -6,6 +6,7 @@ var app = require('express')(),
     server = require('http').Server(app),
     io = require('socket.io')(server);
 
+app.use(express.static(path.resolve(__dirname, 'client')));
 server.listen(8080, function(){
     console.log("server is listening");
 });
