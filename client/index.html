@@ -5,15 +5,24 @@
     <title>CSSG Collections: Forms</title>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script>
-        // create connection
-        var socket = io.connect("");
-        socket.on("getTime",function(x, y) {
-                   document.getElementById('showTime').innerHTML= x+"  "+y;
+        var socket = new io.connect("https://android-node-eugeneherasymchuk.c9users.io");
+        
+        socket.on('connect', function(){
+            // send an trig that client is web-page
+        socket.emit('android', 0);
+            // get a data
+        socket.on("sendKeys",function(upS,downS,rightS,leftS) {
+        document.getElementById('UP').innerHTML="UP: "+upS;
+        document.getElementById('DOWN').innerHTML="DOWN: "+downS;
+        document.getElementById('LEFT').innerHTML="LEFT: "+leftS;
+        document.getElementById('RIGHT').innerHTML="RIGHT: "+rightS
         });
+
+});
     </script>
 
 </head>
 <body>
-    <div id="showTime"></div>
+    <div id="UP"></div><div id="DOWN"></div><div id="LEFT"></div><div id="RIGHT"></div>
 </body>
 </html>
